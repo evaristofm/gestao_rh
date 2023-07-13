@@ -7,6 +7,15 @@
     {% csrf_token %}
     {{ form|bootstrap }}
 
-    <button type="submit">Salvar</button>
+    <a href="{% url 'documento_create' object.id %}" class="btn btn-light">Adicionar Documento</a>
+    <br>
+    <br>
+    <ol>
+        {% for documento in object.documento_set.all %}
+            <li><a href="{{ documento.arquivo.url }}">{{ documento.descricao }}</a></li>
+        {% endfor %}
+    </ol>
+    <br>
+    <button type="submit" class="btn btn-success">Salvar</button>
 </form>
 {% endblock %}
